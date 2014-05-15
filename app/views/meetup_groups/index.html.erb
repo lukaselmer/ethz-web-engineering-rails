@@ -19,8 +19,8 @@
         <td><%= meetup_group.incepted_at %></td>
         <td><%= meetup_group.home_town %></td>
         <td><%= link_to 'Show', meetup_group %></td>
-        <td><%= link_to 'Edit', edit_meetup_group_path(meetup_group) %></td>
-        <td><%= link_to 'Destroy', meetup_group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit', edit_meetup_group_path(meetup_group) if can?(:edit, meetup_group) %></td>
+        <td><%= link_to 'Destroy', meetup_group, method: :delete, data: { confirm: 'Are you sure?' } if can?(:delete, meetup_group) %></td>
       </tr>
     <% end %>
   </tbody>
