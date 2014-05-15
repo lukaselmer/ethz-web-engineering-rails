@@ -1,5 +1,6 @@
 class MeetupGroupsController < ApplicationController
-  load_and_authorize_resource
+  # TODO: authorization load_and_authorize_resource
+  before_action :set_meetup_group, only: [:show, :edit, :update, :destroy]
 
   def index
     @meetup_groups = MeetupGroup.all
@@ -9,15 +10,13 @@ class MeetupGroupsController < ApplicationController
   end
 
   def new
-    @meetup_group = MeetupGroup.new
   end
 
   def edit
   end
 
   def create
-    @meetup_group = MeetupGroup.new(meetup_group_params)
-    @meetup_group.owner = current_user
+    @meetup_group = MeetupGroup.new(resource_params)
 
     respond_to do |format|
       if @meetup_group.save
@@ -32,7 +31,7 @@ class MeetupGroupsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @meetup_group.update(meetup_group_params)
+      if @meetup_group.update(resource_params)
         format.html { redirect_to @meetup_group, notice: 'Meetup group was successfully updated.' }
         format.json { render :show, status: :ok, location: @meetup_group }
       else
@@ -51,7 +50,11 @@ class MeetupGroupsController < ApplicationController
   end
 
   private
-    def meetup_group_params
-      params.require(:meetup_group).permit(:owner_id, :topic, :incepted_at, :home_town)
-    end
+  def set_meetup_group
+    @meetup_group = MeetupGroup.find(params[:id])
+  end
+
+  def resource_params
+    params.require(:meetup_group).permit(:owner_id, :topic, :incepted_at, :home_town)
+  end
 end

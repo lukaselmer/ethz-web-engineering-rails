@@ -20,5 +20,6 @@
   <%= @meetup_group.home_town %>
 </p>
 
+<%= link_to 'Add Activity', new_activity_path(activity: {meetup_group_id: @meetup_group.id}) %> |
 <%= link_to 'Edit', edit_meetup_group_path(@meetup_group) %> |
 <%= link_to 'Back', meetup_groups_path %>

@@ -7,6 +7,10 @@ class Ability
     else
       can :read, MeetupGroup
       can :manage, MeetupGroup, owner_id: user.id
+
+      can :manage, Activity
+      #can :manage, Activity, meetup_group: {owner_id: user.id}
+      #can :read, Activity
     end
 
     # Define abilities for the passed in user here. For example:

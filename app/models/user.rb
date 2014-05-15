@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
 
   validates :name, presence: true
 
+  has_many :meetup_groups, foreign_key: :owner_id
+
   def to_s
     "#{name} (#{email})"
   end
