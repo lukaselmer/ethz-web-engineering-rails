@@ -1,6 +1,6 @@
 module ApplicationHelper
-  def page_title
-    'Hello!'
+  def page_title(title)
+    content_tag(:div, content_tag(:h1, title), class: 'page-header')
   end
 
   def navi_link(name, path)

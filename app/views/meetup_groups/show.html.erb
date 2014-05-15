@@ -1,26 +1,19 @@
-<p id="notice"><%= notice %></p>
+<%=
+    link = link_to(@meetup_group.home_town.to_str, "https://www.google.ch/maps/place/#{@meetup_group.home_town.to_str}/")
+    page_title("#{@meetup_group.topic.to_str} based in #{link}".html_safe)
+%>
 
-<p>
-  <strong>Owner:</strong>
-  <%= @meetup_group.owner %>
-</p>
+<p>This meetup group was founded by
+  <strong><%= link_to @meetup_group.owner, @meetup_group.owner %></strong>
+  at <%= @meetup_group.incepted_at.to_formatted_s(:long_ordinal) %>, which is
+  <%= time_ago_in_words(@meetup_group.incepted_at) %> ago.</p>
 
-<p>
-  <strong>Topic:</strong>
-  <%= @meetup_group.topic %>
-</p>
-
-<p>
-  <strong>Incepted at:</strong>
-  <%= @meetup_group.incepted_at %>
-</p>
-
-<p>
-  <strong>Home town:</strong>
-  <%= @meetup_group.home_town %>
-</p>
-
-<%= link_to 'Add Activity', new_activity_path(activity: {meetup_group_id: @meetup_group.id}) %> |
-<%= link_to 'Add Member', new_membership_path(membership: {meetup_group_id: @meetup_group.id}) %> |
-<%= link_to 'Edit', edit_meetup_group_path(@meetup_group) %> |
-<%= link_to 'Back', meetup_groups_path %>
+<%= link_to('Add Activity',
+            new_activity_path(activity: {meetup_group_id: @meetup_group.id}),
+            class: 'btn btn-primary') if can?(:edit, @meetup_group) %>
+<%= link_to('Add Member',
+            new_membership_path(membership: {meetup_group_id: @meetup_group.id}),
+            class: 'btn btn-default') if can?(:edit, @meetup_group) %>
+<%= link_to('Edit',
+            edit_meetup_group_path(@meetup_group),
+            class: 'btn btn-default') if can?(:edit, @meetup_group) %>
