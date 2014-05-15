@@ -11,7 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140515112039) do
+ActiveRecord::Schema.define(version: 20140515113713) do
+
+  create_table "activities", force: true do |t|
+    t.string   "name",            default: "",    null: false
+    t.string   "location",        default: "",    null: false
+    t.datetime "start_at"
+    t.integer  "duration",        default: 60,    null: false
+    t.text     "description",     default: "",    null: false
+    t.integer  "meetup_group_id",                 null: false
+    t.boolean  "definite",        default: false, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "activities", ["meetup_group_id"], name: "index_activities_on_meetup_group_id"
+
+  create_table "meetup_groups", force: true do |t|
+    t.integer  "owner_id"
+    t.string   "topic",       default: "", null: false
+    t.date     "incepted_at",              null: false
+    t.string   "home_town",   default: "", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "meetup_groups", ["owner_id"], name: "index_meetup_groups_on_owner_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

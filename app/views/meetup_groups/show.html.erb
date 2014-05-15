@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Owner:</strong>
+  <%= @meetup_group.owner %>
+</p>
+
+<p>
+  <strong>Topic:</strong>
+  <%= @meetup_group.topic %>
+</p>
+
+<p>
+  <strong>Incepted at:</strong>
+  <%= @meetup_group.incepted_at %>
+</p>
+
+<p>
+  <strong>Home town:</strong>
+  <%= @meetup_group.home_town %>
+</p>
+
+<%= link_to 'Edit', edit_meetup_group_path(@meetup_group) %> |
+<%= link_to 'Back', meetup_groups_path %>
