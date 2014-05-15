@@ -1,0 +1,63 @@
+<h1>Owns the following meetup groups</h1>
+<% @user.managing_meetup_groups.each do |meetup_group| %>
+  <%= div_for(meetup_group) do %>
+    <div class="topic"><%= meetup_group.topic %></div>
+    <%= link_to 'Delete', meetup_group_path(meetup_group) %>
+  <% end %>
+<% end %>
+
+<h1>Member of the following meetup groups</h1>
+<% @user.memberships.each do |membership| %>
+  <%= div_for(membership) do %>
+    <%= membership.meetup_group %>
+  <% end %>
+<% end %>
+
+
+
+
+<p id="notice"><%= notice %></p>
+
+
+<p>
+  <strong>Name:</strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>Sign in count:</strong>
+  <%= @user.sign_in_count %>
+</p>
+
+<p>
+  <strong>Current sign in at:</strong>
+  <%= @user.current_sign_in_at %>
+</p>
+
+<p>
+  <strong>Last sign in at:</strong>
+  <%= @user.last_sign_in_at %>
+</p>
+
+<p>
+  <strong>Current sign in ip:</strong>
+  <%= @user.current_sign_in_ip %>
+</p>
+
+<p>
+  <strong>Last sign in ip:</strong>
+  <%= @user.last_sign_in_ip %>
+</p>
+
+<p>
+  <strong>Created at:</strong>
+  <%= @user.created_at %>
+</p>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>

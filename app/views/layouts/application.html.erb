@@ -13,6 +13,7 @@
   <%= link_to 'Meetup Groups', meetup_groups_path %>
   <%= link_to 'Activities', activities_path %>
   <% if signed_in? %>
+    <%= link_to 'Show profile', user_path(current_user) %>
     <%= link_to 'Edit profile', edit_user_registration_path %>
     <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
   <% else %>
