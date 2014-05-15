@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Membership:</strong>
+  <%= @vote.membership %>
+</p>
+
+<p>
+  <strong>Activity:</strong>
+  <%= @vote.activity %>
+</p>
+
+<%= link_to 'Edit', edit_vote_path(@vote) %> |
+<%= link_to 'Back', votes_path %>

@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  meetup_group_id: 
+  user_id: 
+
+two:
+  meetup_group_id: 
+  user_id: 
