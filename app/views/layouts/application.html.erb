@@ -8,25 +8,29 @@
 </head>
 <body>
 
-<div>
-  <%= link_to 'Home', root_path %>
-  <%= link_to 'Meetup Groups', meetup_groups_path %>
-  <%= link_to 'Activities', activities_path %>
-  <% if signed_in? %>
-    <%= link_to 'Show profile', user_path(current_user) %>
-    <%= link_to 'Edit profile', edit_user_registration_path %>
-    <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
-  <% else %>
-    <%= link_to 'Login', new_user_session_path %>
-    <%= link_to 'Sign up', new_user_registration_path %>
+<%= render 'layouts/navi' %>
+
+
+<div class="container">
+  <% if notice %>
+    <div class="alert alert-success"><%= notice %></div>
   <% end %>
+  <% if alert %>
+    <div class="alert alert-danger"><%= alert %></div>
+  <% end %>
+
+  <div class="page-header">
+    <h1><%= page_title %></h1>
+  </div>
+  <%= yield %>
 </div>
 
-<p class="notice"><%= notice %></p>
+<div id="footer">
+  <div class="container">
+    <p class="text-muted">Place sticky footer content here.</p>
+  </div>
+</div>
 
-<p class="alert"><%= alert %></p>
-
-<%= yield %>
 
 </body>
 </html>
