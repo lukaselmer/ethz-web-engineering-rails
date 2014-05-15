@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+ruby '2.1.2'
 
 gem 'rails', '4.1.1'
 gem 'sqlite3'
@@ -19,7 +20,8 @@ gem 'spring',        group: :development
 
 gem 'devise'
 
-gem 'simple_form'
+gem 'simple_form', '~> 3.1.0.rc1', github: 'plataformatec/simple_form'
+gem 'bootstrap-datepicker-rails'
 
 gem 'better_errors'
 gem 'binding_of_caller'

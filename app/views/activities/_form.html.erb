@@ -4,8 +4,13 @@
   <div class="form-inputs">
     <%= f.input :name %>
     <%= f.input :location %>
-    <%= f.input :start_at %>
-    <%= f.input :duration %>
+    <%= f.input :start_at, as: :string, input_html: {class: 'datepicker'} %>
+    <%= f.input :duration, hint: 'in minutes' do %>
+      <div class="input-group">
+        <%= f.input_field :duration, class: 'form-control' %>
+        <%= content_tag :span, 'minutes', :class => 'input-group-addon' %>
+      </div>
+    <% end %>
     <%= f.input :description %>
     <%= f.association :meetup_group %>
     <%= f.input :definite %>
@@ -13,5 +18,6 @@
 
   <div class="form-actions">
     <%= f.button :submit %>
+    <%= link_to 'Back', (@activity.new_record? ? @activity.meetup_group : @activity), class: 'btn btn-default' %>
   </div>
 <% end %>
