@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :users, only: [:show, :index]
 
   resources :votes
 
@@ -10,6 +9,7 @@ Rails.application.routes.draw do
   resources :meetup_groups
 
   devise_for :users
+  resources :users, only: [:show, :index]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
