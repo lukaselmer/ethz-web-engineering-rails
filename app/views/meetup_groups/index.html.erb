@@ -1,26 +1,24 @@
-<h1>Listing meetup_groups</h1>
+<h1>Meetup Groups</h1>
 
 <table class="table table-striped">
   <thead>
   <tr>
-    <th>Owner</th>
     <th>Topic</th>
-    <th>Incepted at</th>
     <th>Home town</th>
-    <th colspan="3"></th>
+    <th class="hidden-xs">Owner</th>
+    <th class="hidden-xs hidden-sm">Incepted at</th>
+    <th colspan="2"></th>
   </tr>
   </thead>
 
   <tbody>
   <% @meetup_groups.each do |meetup_group| %>
     <tr>
-      <td><%= meetup_group.owner %></td>
-      <td><%= meetup_group.topic %></td>
-      <td><%= meetup_group.incepted_at %></td>
+      <td><%= link_to meetup_group.topic, meetup_group %></td>
       <td><%= meetup_group.home_town %></td>
-      <td><%= link_to 'Show', meetup_group %></td>
-      <td><%= link_to 'Edit', edit_meetup_group_path(meetup_group) if can?(:edit, meetup_group) %></td>
-      <td><%= link_to 'Destroy', meetup_group, method: :delete, data: {confirm: 'Are you sure?'} if can?(:delete, meetup_group) %></td>
+      <td class="hidden-xs"><%= meetup_group.owner %></td>
+      <td class="hidden-xs hidden-sm"><%= meetup_group.incepted_at %></td>
+      <td><%= link_to 'Edit', edit_meetup_group_path(meetup_group), class: 'btn btn-default' if can?(:edit, meetup_group) %></td>
     </tr>
   <% end %>
   </tbody>
@@ -28,4 +26,4 @@
 
 <br>
 
-<%= link_to 'New Meetup group', new_meetup_group_path %>
+<%= link_to 'Found a new meetup group', new_meetup_group_path, class: 'btn btn-primary' %>
