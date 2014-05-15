@@ -3,6 +3,7 @@ require 'test_helper'
 class ActivitiesControllerTest < ActionController::TestCase
   setup do
     @activity = activities(:one)
+    sign_in users(:one)
   end
 
   test "should get index" do
@@ -12,13 +13,13 @@ class ActivitiesControllerTest < ActionController::TestCase
   end
 
   test "should get new" do
-    get :new
+    get :new, activity: {meetup_group_id: @activity.meetup_group_id}
     assert_response :success
   end
 
   test "should create activity" do
     assert_difference('Activity.count') do
-      post :create, activity: { definite: @activity.definite, description: @activity.description, duration: @activity.duration, location: @activity.location, meetup_group_id: @activity.meetup_group_id, name: @activity.name, start_at: @activity.start_at }
+      post :create, activity: {definite: @activity.definite, description: @activity.description, duration: @activity.duration, location: @activity.location, meetup_group_id: @activity.meetup_group_id, name: @activity.name, start_at: @activity.start_at}
     end
 
     assert_redirected_to activity_path(assigns(:activity))
@@ -35,7 +36,7 @@ class ActivitiesControllerTest < ActionController::TestCase
   end
 
   test "should update activity" do
-    patch :update, id: @activity, activity: { definite: @activity.definite, description: @activity.description, duration: @activity.duration, location: @activity.location, meetup_group_id: @activity.meetup_group_id, name: @activity.name, start_at: @activity.start_at }
+    patch :update, id: @activity, activity: {definite: @activity.definite, description: @activity.description, duration: @activity.duration, location: @activity.location, meetup_group_id: @activity.meetup_group_id, name: @activity.name, start_at: @activity.start_at}
     assert_redirected_to activity_path(assigns(:activity))
   end
 

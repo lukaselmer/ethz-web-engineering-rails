@@ -4,16 +4,16 @@ one:
   name: MyString
   location: MyString
   start_at: 2014-05-15 13:37:13
-  duration: 
+  duration: 30
   description: MyText
-  meetup_group_id: 
+  meetup_group: one
   definite: false
 
 two:
   name: MyString
   location: MyString
   start_at: 2014-05-15 13:37:13
-  duration: 
+  duration: 60
   description: MyText
-  meetup_group_id: 
+  meetup_group: one
   definite: false

@@ -1,9 +1,5 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  membership_id: 
-  activity_id: 
-
-two:
-  membership_id: 
-  activity_id: 
+  membership: one
+  activity: one

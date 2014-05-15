@@ -35,6 +35,6 @@
   <%= @activity.definite %>
 </p>
 
-<%= link_to 'Vote for activity', new_vote_path(membership: {meetup_group_id: @meetup_group.id}) %> |
+<%= link_to 'Vote for activity', new_vote_path(vote: {activity_id: @activity.id}) %> |
 <%= link_to 'Edit', edit_activity_path(@activity) %> |
 <%= link_to 'Back', activities_path %>

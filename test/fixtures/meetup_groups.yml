@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  owner_id: 
+  owner: one
   topic: MyString
   incepted_at: 2014-05-15
   home_town: MyString
 
 two:
-  owner_id: 
+  owner: one
   topic: MyString
   incepted_at: 2014-05-15
   home_town: MyString

@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20140515141529) do
   add_index "activities", ["meetup_group_id"], name: "index_activities_on_meetup_group_id"
 
   create_table "meetup_groups", force: true do |t|
-    t.integer  "owner_id"
+    t.integer  "owner_id",                 null: false
     t.string   "topic",       default: "", null: false
     t.date     "incepted_at",              null: false
     t.string   "home_town",   default: "", null: false

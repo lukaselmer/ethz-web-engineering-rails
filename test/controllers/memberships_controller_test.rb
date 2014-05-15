@@ -12,13 +12,13 @@ class MembershipsControllerTest < ActionController::TestCase
   end
 
   test "should get new" do
-    get :new
+    get :new, membership: {meetup_group_id: @membership.meetup_group_id}
     assert_response :success
   end
 
   test "should create membership" do
     assert_difference('Membership.count') do
-      post :create, membership: { meetup_group_id: @membership.meetup_group_id, user_id: @membership.user_id }
+      post :create, membership: {meetup_group_id: @membership.meetup_group_id, user_id: @membership.user_id}
     end
 
     assert_redirected_to membership_path(assigns(:membership))
@@ -35,7 +35,7 @@ class MembershipsControllerTest < ActionController::TestCase
   end
 
   test "should update membership" do
-    patch :update, id: @membership, membership: { meetup_group_id: @membership.meetup_group_id, user_id: @membership.user_id }
+    patch :update, id: @membership, membership: {meetup_group_id: @membership.meetup_group_id, user_id: @membership.user_id}
     assert_redirected_to membership_path(assigns(:membership))
   end
 
