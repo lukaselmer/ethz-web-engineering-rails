@@ -1,28 +1,28 @@
 <h1>Listing meetup_groups</h1>
 
-<table>
+<table class="table table-striped">
   <thead>
-    <tr>
-      <th>Owner</th>
-      <th>Topic</th>
-      <th>Incepted at</th>
-      <th>Home town</th>
-      <th colspan="3"></th>
-    </tr>
+  <tr>
+    <th>Owner</th>
+    <th>Topic</th>
+    <th>Incepted at</th>
+    <th>Home town</th>
+    <th colspan="3"></th>
+  </tr>
   </thead>
 
   <tbody>
-    <% @meetup_groups.each do |meetup_group| %>
-      <tr>
-        <td><%= meetup_group.owner %></td>
-        <td><%= meetup_group.topic %></td>
-        <td><%= meetup_group.incepted_at %></td>
-        <td><%= meetup_group.home_town %></td>
-        <td><%= link_to 'Show', meetup_group %></td>
-        <td><%= link_to 'Edit', edit_meetup_group_path(meetup_group) if can?(:edit, meetup_group) %></td>
-        <td><%= link_to 'Destroy', meetup_group, method: :delete, data: { confirm: 'Are you sure?' } if can?(:delete, meetup_group) %></td>
-      </tr>
-    <% end %>
+  <% @meetup_groups.each do |meetup_group| %>
+    <tr>
+      <td><%= meetup_group.owner %></td>
+      <td><%= meetup_group.topic %></td>
+      <td><%= meetup_group.incepted_at %></td>
+      <td><%= meetup_group.home_town %></td>
+      <td><%= link_to 'Show', meetup_group %></td>
+      <td><%= link_to 'Edit', edit_meetup_group_path(meetup_group) if can?(:edit, meetup_group) %></td>
+      <td><%= link_to 'Destroy', meetup_group, method: :delete, data: {confirm: 'Are you sure?'} if can?(:delete, meetup_group) %></td>
+    </tr>
+  <% end %>
   </tbody>
 </table>
 

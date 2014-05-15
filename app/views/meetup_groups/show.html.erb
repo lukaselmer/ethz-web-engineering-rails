@@ -17,3 +17,6 @@
 <%= link_to('Edit',
             edit_meetup_group_path(@meetup_group),
             class: 'btn btn-default') if can?(:edit, @meetup_group) %>
+<%= link_to('Delete',
+            @meetup_group, method: :delete, data: {confirm: 'Are you sure?'},
+            class: 'btn btn-danger') if can?(:delete, @meetup_group) %>
