@@ -10,6 +10,7 @@ class MeetupGroupsController < ApplicationController
   end
 
   def new
+    @meetup_group = MeetupGroup.new(owner: current_user)
   end
 
   def edit
