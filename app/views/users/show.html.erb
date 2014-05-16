@@ -25,7 +25,7 @@
   </thead>
   <%= content_tag_for(:tr, @user.memberships) do |membership| %>
     <td><%= link_to membership.meetup_group.topic, membership.meetup_group %></td>
-    <td><%= link_to membership.created_at, membership %></td>
+    <td><%= membership.created_at %></td>
     <td><%= link_to 'Delete', meetup_group_path(membership), class: 'btn-sm btn-danger' if can?(:delete, membership) %></td>
   <% end %>
 </table>

@@ -7,8 +7,9 @@ class User < ActiveRecord::Base
   validates :name, presence: true
 
   has_many :managing_meetup_groups, foreign_key: :owner_id, class_name: 'MeetupGroup'
-  has_many :meetup_groups, through: :memberships
   has_many :memberships
+  has_many :meetup_groups, through: :memberships
+  has_many :managing_activities, through: :meetup_groups, class_name: 'Activity', source: :activities
 
   def to_s
     "#{name} (#{email})"

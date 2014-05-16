@@ -20,4 +20,4 @@
 <% end %>
 
 <%= link_to 'Edit', edit_activity_path(activity), class: 'btn btn-default' if can?(:edit, activity) %>
-<%= link_to 'Delete', activity_path(activity), method: :delete, class: 'btn btn-danger' if can?(:delete, activity) %>
+<%= link_to 'Delete', activity_path(activity), data: {confirm: 'Are you sure?'}, method: :delete, class: 'btn btn-danger' if can?(:delete, activity) %>

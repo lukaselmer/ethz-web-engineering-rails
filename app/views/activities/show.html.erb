@@ -2,6 +2,8 @@
   <%= render 'activities/title', activity: @activity %>
 <% end %>
 
+<p>This activity is part of the meetup group <%= link_to @activity.meetup_group, @activity.meetup_group %></p>
+
 <%= render 'activities/activity', activity: @activity %>
 
 <h2>Members who voted for this activity</h2>

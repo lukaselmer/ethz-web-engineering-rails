@@ -1,23 +1,12 @@
 class MembershipsController < ApplicationController
-  # TODO: authorization
-  before_action :set_membership, only: [:show, :edit, :update, :destroy]
-
-  def index
-    @memberships = Membership.all
-  end
-
-  def show
-  end
+  # "Bug / new feature required" in cancancan
+  load_and_authorize_resource param_method: :membership_params, only: [:new, :create, :destroy]
+  before_filter :set_available_users, only: [:new, :create]
 
   def new
-    @membership = Membership.new(membership_params)
-    set_available_users
   end
 
   def create
-    @membership = Membership.new(membership_params)
-    set_available_users
-
     respond_to do |format|
       if @membership.save
         format.html { redirect_to @membership.meetup_group, notice: 'Membership was successfully created.' }
@@ -38,10 +27,6 @@ class MembershipsController < ApplicationController
   end
 
   private
-  def set_membership
-    @membership = Membership.find(params[:id])
-  end
-
   def set_available_users
     @available_users = User.all.to_a - @membership.meetup_group.memberships.collect(&:user)
   end

@@ -1,5 +1,7 @@
 class ActivitiesController < ApplicationController
-  before_action :set_activity, only: [:show, :edit, :update, :destroy]
+  # "Bug / new feature required" in cancancan
+  load_and_authorize_resource param_method: :create_params, only: [:new]
+  load_and_authorize_resource except: [:new]
 
   def index
     @activities = Activity.upcoming.popular
@@ -10,15 +12,12 @@ class ActivitiesController < ApplicationController
   end
 
   def new
-    @activity = Activity.new(resource_params)
   end
 
   def edit
   end
 
   def create
-    @activity = Activity.new(resource_params)
-
     respond_to do |format|
       if @activity.save
         format.html { redirect_to @activity, notice: 'Activity was successfully created.' }
@@ -32,7 +31,7 @@ class ActivitiesController < ApplicationController
 
   def update
     respond_to do |format|
-      if @activity.update(resource_params)
+      if @activity.update(update_params)
         format.html { redirect_to @activity, notice: 'Activity was successfully updated.' }
         format.json { render :show, status: :ok, location: @activity }
       else
@@ -51,11 +50,11 @@ class ActivitiesController < ApplicationController
   end
 
   private
-  def set_activity
-    @activity = Activity.find(params[:id])
+  def update_params
+    params.require(:activity).permit(:name, :location, :start_at, :duration, :description, :definite)
   end
 
-  def resource_params
+  def create_params
     params.require(:activity).permit(:name, :location, :start_at, :duration, :description, :meetup_group_id, :definite)
   end
 end

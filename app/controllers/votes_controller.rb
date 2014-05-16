@@ -1,10 +1,5 @@
 class VotesController < ApplicationController
-  # TODO: authorization
-  before_action :set_vote, only: [:show, :edit, :update, :destroy]
-
-  def new
-    @vote = Vote.new
-  end
+  load_and_authorize_resource only: [:create, :destroy]
 
   def create
     @vote = Vote.new(vote_params)
@@ -31,10 +26,6 @@ class VotesController < ApplicationController
   end
 
   private
-  def set_vote
-    @vote = Vote.find(params[:id])
-  end
-
   def vote_params
     params.require(:vote).permit(:user_id, :activity_id)
   end

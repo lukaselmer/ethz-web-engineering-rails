@@ -5,21 +5,29 @@ class Ability
     if user.nil?
       # not logged in
     else
+      can :read, User
+
       can :read, MeetupGroup
       can :manage, MeetupGroup, owner_id: user.id
 
-      can :manage, Activity
+      can :read, Activity
+      can :manage, Activity do |activity|
+        user.managing_meetup_groups.include?(activity.meetup_group)
+      end
+
+      # A user can remove himself from a meetup group
       can :manage, Membership do |membership|
         membership.user == user || membership.meetup_group.owner == user
       end
+
+      # The owner of a meetup group should not be able to delete himself
       cannot :delete, Membership do |membership|
         membership.user == user && membership.meetup_group.owner == user
       end
 
-      can :manage, Vote
-
-      #can :manage, Activity, meetup_group: {owner_id: user.id}
-      #can :read, Activity
+      can :manage, Vote do |vote|
+        vote.user == user && user.meetup_groups.include?(vote.activity.meetup_group)
+      end
     end
 
     # Define abilities for the passed in user here. For example:

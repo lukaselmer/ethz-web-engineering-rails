@@ -3,23 +3,25 @@
   <%= link_to(@meetup_group.home_town.to_str, "https://www.google.ch/maps/place/#{@meetup_group.home_town.to_str}/") %>
 <% end %>
 
+<p>
+  <%= link_to('Add Activity',
+              new_activity_path(activity: {meetup_group_id: @meetup_group.id}),
+              class: 'btn btn-primary') if can?(:edit, @meetup_group) %>
+  <%= link_to('Add Member',
+              new_membership_path(membership: {meetup_group_id: @meetup_group.id}),
+              class: 'btn btn-default') if can?(:edit, @meetup_group) %>
+  <%= link_to('Edit',
+              edit_meetup_group_path(@meetup_group),
+              class: 'btn btn-default') if can?(:edit, @meetup_group) %>
+  <%= link_to('Delete',
+              @meetup_group, method: :delete, data: {confirm: 'Are you sure?'},
+              class: 'btn btn-danger') if can?(:delete, @meetup_group) %>
+</p>
+
 <p>This meetup group was founded by
   <strong><%= link_to @meetup_group.owner, @meetup_group.owner %></strong>
   at <%= @meetup_group.incepted_at.to_formatted_s(:long_ordinal) %>, which is
   <%= time_ago_in_words(@meetup_group.incepted_at) %> ago.</p>
-
-<%= link_to('Add Activity',
-            new_activity_path(activity: {meetup_group_id: @meetup_group.id}),
-            class: 'btn btn-primary') if can?(:edit, @meetup_group) %>
-<%= link_to('Add Member',
-            new_membership_path(membership: {meetup_group_id: @meetup_group.id}),
-            class: 'btn btn-default') if can?(:edit, @meetup_group) %>
-<%= link_to('Edit',
-            edit_meetup_group_path(@meetup_group),
-            class: 'btn btn-default') if can?(:edit, @meetup_group) %>
-<%= link_to('Delete',
-            @meetup_group, method: :delete, data: {confirm: 'Are you sure?'},
-            class: 'btn btn-danger') if can?(:delete, @meetup_group) %>
 
 
 <h2>Members</h2>
@@ -33,8 +35,8 @@
   </thead>
   <%= content_tag_for(:tr, @meetup_group.memberships) do |membership| %>
     <td><%= link_to membership.user, membership.user %></td>
-    <td><%= link_to membership.created_at, membership %></td>
-    <td><%= link_to 'Delete', membership_path(membership), method: :delete, class: 'btn-sm btn-danger' if can?(:delete, membership) %></td>
+    <td><%= membership.created_at %></td>
+    <td><%= link_to 'Delete', membership_path(membership), data: {confirm: 'Are you sure?'}, method: :delete, class: 'btn-sm btn-danger' if can?(:delete, membership) %></td>
   <% end %>
 </table>
 
@@ -50,3 +52,19 @@
   <h3><%= render 'activities/title', activity: activity %></h3>
   <%= render 'activities/activity', activity: activity %>
 <% end %>
+
+
+<p>
+  <%= link_to('Add Activity',
+              new_activity_path(activity: {meetup_group_id: @meetup_group.id}),
+              class: 'btn btn-primary') if can?(:edit, @meetup_group) %>
+  <%= link_to('Add Member',
+              new_membership_path(membership: {meetup_group_id: @meetup_group.id}),
+              class: 'btn btn-default') if can?(:edit, @meetup_group) %>
+  <%= link_to('Edit',
+              edit_meetup_group_path(@meetup_group),
+              class: 'btn btn-default') if can?(:edit, @meetup_group) %>
+  <%= link_to('Delete',
+              @meetup_group, method: :delete, data: {confirm: 'Are you sure?'},
+              class: 'btn btn-danger') if can?(:delete, @meetup_group) %>
+</p>

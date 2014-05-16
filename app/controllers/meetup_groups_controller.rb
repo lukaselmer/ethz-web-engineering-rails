@@ -1,23 +1,20 @@
 class MeetupGroupsController < ApplicationController
-  # TODO: authorization load_and_authorize_resource
-  before_action :set_meetup_group, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   def index
-    @meetup_groups = MeetupGroup.all
   end
 
   def show
   end
 
   def new
-    @meetup_group = MeetupGroup.new(owner: current_user)
   end
 
   def edit
   end
 
   def create
-    @meetup_group = MeetupGroup.new(resource_params)
+    @meetup_group.owner = current_user
 
     respond_to do |format|
       if @meetup_group.save
@@ -51,11 +48,7 @@ class MeetupGroupsController < ApplicationController
   end
 
   private
-  def set_meetup_group
-    @meetup_group = MeetupGroup.find(params[:id])
-  end
-
   def resource_params
-    params.require(:meetup_group).permit(:owner_id, :topic, :incepted_at, :home_town)
+    params.require(:meetup_group).permit(:topic, :incepted_at, :home_town)
   end
 end
