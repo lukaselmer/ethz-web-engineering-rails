@@ -1,7 +1,7 @@
-<%=
-    link = link_to(@meetup_group.home_town.to_str, "https://www.google.ch/maps/place/#{@meetup_group.home_town.to_str}/")
-    page_title("#{@meetup_group.topic.to_str} based in #{link}".html_safe)
-%>
+<%= page_title do %>
+  <%= @meetup_group.topic %> based in
+  <%= link_to(@meetup_group.home_town.to_str, "https://www.google.ch/maps/place/#{@meetup_group.home_town.to_str}/") %>
+<% end %>
 
 <p>This meetup group was founded by
   <strong><%= link_to @meetup_group.owner, @meetup_group.owner %></strong>
@@ -39,8 +39,14 @@
 </table>
 
 
-<h2>Activities</h2>
-<%= content_tag_for(:div, @meetup_group.activities) do |activity| %>
-  <h3><%= link_to activity.name, activity %></h3>
+<h2>Popular Upcoming Activities</h2>
+<%= content_tag_for(:div, @meetup_group.popular_upcoming_activities) do |activity| %>
+  <h3><%= render 'activities/title', activity: activity %></h3>
+  <%= render 'activities/activity', activity: activity %>
+<% end %>
+
+<h2>Activites Archive</h2>
+<%= content_tag_for(:div, @meetup_group.activities_archive) do |activity| %>
+  <h3><%= render 'activities/title', activity: activity %></h3>
   <%= render 'activities/activity', activity: activity %>
 <% end %>

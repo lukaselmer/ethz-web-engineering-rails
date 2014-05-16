@@ -1,4 +1,6 @@
-<%= page_title @activity.name %>
+<%= page_title do %>
+  <%= render 'activities/title', activity: @activity %>
+<% end %>
 
 <%= render 'activities/activity', activity: @activity %>
 

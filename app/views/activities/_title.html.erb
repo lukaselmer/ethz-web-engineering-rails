@@ -1,0 +1,7 @@
+<%= link_to activity.name, activity %>
+<span class='label label-default'><%= activity.votes.count %> votes</span>
+<% if activity.definite %>
+  <span class="label label-success">definite</span>
+<% else %>
+  <span class="label label-warning">not definite</span>
+<% end %>

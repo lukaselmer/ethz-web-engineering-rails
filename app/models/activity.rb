@@ -10,6 +10,10 @@ class Activity < ActiveRecord::Base
     errors.add(:start_at, 'must be in the future') if start_at < Time.now
   end
 
+  scope :archive, -> { where('start_at < ?', Time.now).order(start_at: :desc) }
+  scope :upcoming, -> { where('start_at >= ?', Time.now) }
+  scope :popular, -> { includes(:votes).order(votes_count: :desc) }
+
   def to_s
     "#{name}, #{start_at}"
   end
