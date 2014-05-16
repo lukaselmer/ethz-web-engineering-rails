@@ -1,6 +1,6 @@
 class Vote < ActiveRecord::Base
-  belongs_to :membership
+  belongs_to :user
   belongs_to :activity
 
-  validates :membership, :activity, presence: true
+  validates :user, :activity, presence: true
 end
