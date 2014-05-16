@@ -22,7 +22,8 @@ gem 'spring',        group: :development
 gem 'devise'
 
 gem 'simple_form', '~> 3.1.0.rc1', github: 'plataformatec/simple_form'
-gem 'bootstrap-datepicker-rails'
+gem 'momentjs-rails', '~> 2.5.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 3.0.0'
 
 gem 'better_errors'
 gem 'binding_of_caller'

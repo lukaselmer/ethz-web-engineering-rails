@@ -65,5 +65,6 @@
     </p>
   <% end %>
 
-  <td><%= link_to 'Delete', activity_path(activity), class: 'btn btn-danger' if can?(:delete, activity) %></td>
+  <%= link_to 'Edit', edit_activity_path(activity), class: 'btn btn-default' if can?(:edit, activity) %>
+  <%= link_to 'Delete', activity_path(activity), class: 'btn btn-danger' if can?(:delete, activity) %>
 <% end %>

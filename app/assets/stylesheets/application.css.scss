@@ -11,9 +11,9 @@
  * file per style scope.
  *
  *= require_self
- *= require bootstrap-datepicker3
  *= require_tree ./layout
  */
 
 // Use variables to customize bootstrap, see http://getbootstrap.com/customize/#less-variables
 @import "bootstrap";
+@import 'bootstrap-datetimepicker';

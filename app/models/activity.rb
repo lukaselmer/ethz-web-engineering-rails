@@ -16,4 +16,9 @@ class Activity < ActiveRecord::Base
   def ends_at
     start_at + duration.minutes
   end
+
+  def start_at=(val)
+    val = Time.parse(val, Time::DATE_FORMATS[:datetimepicker]) if val.is_a? String
+    write_attribute(:start_at, val)
+  end
 end
