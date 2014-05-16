@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   resources :votes
 
-  resources :memberships
+  resources :memberships, only: [:show, :new, :create, :delete]
 
   resources :activities
 

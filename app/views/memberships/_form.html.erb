@@ -4,7 +4,7 @@
   <%= f.hidden_field :meetup_group_id %>
 
   <div class="form-inputs">
-    <%= f.association :user %>
+    <%= f.association :user, collection: @available_users %>
   </div>
 
   <div class="form-actions">
