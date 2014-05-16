@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
-  resources :votes, only: [:new, :create, :delete]
+  resources :votes, except: [:edit, :update, :index]
 
-  resources :memberships, only: [:show, :new, :create, :delete]
+  resources :memberships, except: [:edit, :update, :index]
 
   resources :activities
 

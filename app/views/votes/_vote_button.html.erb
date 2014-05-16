@@ -1,0 +1,15 @@
+<% if activity.voted?(current_user) %>
+  <% vote = activity.vote(current_user) %>
+  <%= link_to 'Unvote', vote_path(vote), method: :delete, class: 'btn btn-danger' if can?(:delete, vote) %>
+<% else %>
+  <%= form_for(Vote.new(activity: activity, user: current_user)) do |f| %>
+    <%= f.hidden_field :user_id %>
+    <%= f.hidden_field :activity_id %>
+
+    <%= button_tag class: 'btn btn-default btn-lg' do %>
+      <span class="glyphicon glyphicon-star"></span> Vote for this activity!
+    <% end %>
+  <% end %>
+<% end %>
+
+

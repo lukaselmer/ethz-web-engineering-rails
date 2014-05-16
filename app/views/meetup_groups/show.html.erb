@@ -34,7 +34,7 @@
   <%= content_tag_for(:tr, @meetup_group.memberships) do |membership| %>
     <td><%= link_to membership.user, membership.user %></td>
     <td><%= link_to membership.created_at, membership %></td>
-    <td><%= link_to 'Delete', meetup_group_path(membership), class: 'btn-sm btn-danger' if can?(:delete, membership) %></td>
+    <td><%= link_to 'Delete', meetup_group_path(membership), method: :delete, class: 'btn-sm btn-danger' if can?(:delete, membership) %></td>
   <% end %>
 </table>
 
@@ -42,29 +42,5 @@
 <h2>Activities</h2>
 <%= content_tag_for(:div, @meetup_group.activities) do |activity| %>
   <h3><%= link_to activity.name, activity %></h3>
-  <p>
-    This activity will start at
-    <% activity.start_at %> and will end at <%= activity.ends_at %>.
-  </p>
-  <p>Location: <strong><%= activity.location %></strong></p>
-  <p><%= activity.description %></p>
-  <p>
-    The status of the activity is
-    <% if activity.definite %>
-      <span class="label label-success">definite</span>
-    <% else %>
-      <span class="label label-warning">not definite</span>
-    <% end %>
-  </p>
-
-  <% unless activity.definite %>
-    <p>
-      <%= link_to new_vote_path(vote: {activity_id: activity.id}), class: 'btn btn-default btn-lg' do %>
-        <span class="glyphicon glyphicon-star"></span> Vote for this activity!
-      <% end %>
-    </p>
-  <% end %>
-
-  <%= link_to 'Edit', edit_activity_path(activity), class: 'btn btn-default' if can?(:edit, activity) %>
-  <%= link_to 'Delete', activity_path(activity), class: 'btn btn-danger' if can?(:delete, activity) %>
+  <%= render 'activities/activity', activity: activity %>
 <% end %>

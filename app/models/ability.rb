@@ -15,6 +15,9 @@ class Ability
       cannot :delete, Membership do |membership|
         membership.user == user && membership.meetup_group.owner == user
       end
+
+      can :manage, Vote
+
       #can :manage, Activity, meetup_group: {owner_id: user.id}
       #can :read, Activity
     end

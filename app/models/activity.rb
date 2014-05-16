@@ -1,5 +1,6 @@
 class Activity < ActiveRecord::Base
   belongs_to :meetup_group
+  has_many :votes
 
   validates :name, :location, :start_at, :duration, :description, :meetup_group, presence: true
   validates :description, length: {minimum: 20}
@@ -20,5 +21,13 @@ class Activity < ActiveRecord::Base
   def start_at=(val)
     val = Time.parse(val, Time::DATE_FORMATS[:datetimepicker]) if val.is_a? String
     write_attribute(:start_at, val)
+  end
+
+  def vote(user)
+    votes.where(user: user).first
+  end
+
+  def voted?(user)
+    !vote(user).nil?
   end
 end
