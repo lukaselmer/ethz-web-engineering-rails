@@ -13,6 +13,8 @@ class Activity < ActiveRecord::Base
   scope :archive, -> { where('start_at < ?', Time.now).order(start_at: :desc) }
   scope :upcoming, -> { where('start_at >= ?', Time.now) }
   scope :popular, -> { includes(:votes).order(votes_count: :desc) }
+  scope :latest, -> { order(start_at: :desc) }
+  scope :by_user, -> (user) { where(meetup_group_id: user.meetup_groups.ids) }
 
   def to_s
     "#{name}, #{start_at}"
