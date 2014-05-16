@@ -5,28 +5,14 @@
     <tr>
       <th>Name</th>
       <th>Email</th>
-      <th>Sign in count</th>
-      <th>Current sign in at</th>
-      <th>Last sign in at</th>
-      <th>Current sign in ip</th>
-      <th>Last sign in ip</th>
-      <th>Created at</th>
-      <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td><%= user.name %></td>
+        <td><%= link_to user.name, user %></td>
         <td><%= user.email %></td>
-        <td><%= user.sign_in_count %></td>
-        <td><%= user.current_sign_in_at %></td>
-        <td><%= user.last_sign_in_at %></td>
-        <td><%= user.current_sign_in_ip %></td>
-        <td><%= user.last_sign_in_ip %></td>
-        <td><%= user.created_at %></td>
-        <td><%= link_to 'Show', user %></td>
       </tr>
     <% end %>
   </tbody>

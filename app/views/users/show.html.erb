@@ -1,62 +1,68 @@
-<h1>Owns the following meetup groups</h1>
-<% @user.managing_meetup_groups.each do |meetup_group| %>
-  <%= div_for(meetup_group) do %>
-    <div class="topic"><%= meetup_group.topic %></div>
-    <%= link_to 'Delete', meetup_group_path(meetup_group) %>
+<%= page_title("Profile of #{@user}") %>
+
+<h2>Owns the following meetup groups</h2>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Topic</th>
+    <th></th>
+  </tr>
+  </thead>
+  <%= content_tag_for(:tr, @user.managing_meetup_groups) do |meetup_group| %>
+    <td><%= link_to meetup_group.topic, meetup_group %></td>
+    <td><%= link_to 'Delete', meetup_group_path(meetup_group), class: 'btn-sm btn-danger' if can?(:delete, meetup_group) %></td>
   <% end %>
+</table>
+
+<h2>Member of the following meetup groups</h2>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Meetup Group</th>
+    <th>Member since</th>
+    <th></th>
+  </tr>
+  </thead>
+  <%= content_tag_for(:tr, @user.memberships) do |membership| %>
+    <td><%= link_to membership.meetup_group.topic, membership.meetup_group %></td>
+    <td><%= link_to membership.created_at, membership %></td>
+    <td><%= link_to 'Delete', meetup_group_path(membership), class: 'btn-sm btn-danger' if can?(:delete, membership) %></td>
+  <% end %>
+</table>
+
+<% if @user == current_user %>
+  <h2>Personal Info</h2>
+  <p>
+    <strong>Sign in count:</strong>
+    <%= @user.sign_in_count %>
+  </p>
+
+  <p>
+    <strong>Current sign in at:</strong>
+    <%= @user.current_sign_in_at %>
+  </p>
+
+  <p>
+    <strong>Last sign in at:</strong>
+    <%= @user.last_sign_in_at %>
+  </p>
+
+  <p>
+    <strong>Current sign in ip:</strong>
+    <%= @user.current_sign_in_ip %>
+  </p>
+
+  <p>
+    <strong>Last sign in ip:</strong>
+    <%= @user.last_sign_in_ip %>
+  </p>
+
+  <p>
+    <strong>Created at:</strong>
+    <%= @user.created_at %>
+  </p>
+
+  <%= link_to 'Edit', edit_user_registration_path, class: 'btn btn-default' %>
 <% end %>
 
-<h1>Member of the following meetup groups</h1>
-<% @user.memberships.each do |membership| %>
-  <%= div_for(membership) do %>
-    <%= membership.meetup_group %>
-  <% end %>
-<% end %>
-
-
-
-
-<p id="notice"><%= notice %></p>
-
-
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
-
-<p>
-  <strong>Sign in count:</strong>
-  <%= @user.sign_in_count %>
-</p>
-
-<p>
-  <strong>Current sign in at:</strong>
-  <%= @user.current_sign_in_at %>
-</p>
-
-<p>
-  <strong>Last sign in at:</strong>
-  <%= @user.last_sign_in_at %>
-</p>
-
-<p>
-  <strong>Current sign in ip:</strong>
-  <%= @user.current_sign_in_ip %>
-</p>
-
-<p>
-  <strong>Last sign in ip:</strong>
-  <%= @user.last_sign_in_ip %>
-</p>
-
-<p>
-  <strong>Created at:</strong>
-  <%= @user.created_at %>
-</p>
-
-<%= link_to 'Back', users_path %>
+<%= link_to 'Back', users_path, class: 'btn btn-default' %>
