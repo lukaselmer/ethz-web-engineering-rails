@@ -32,10 +32,14 @@ group :development do
   gem 'binding_of_caller'
 end
 
-group :test do
+group :test, :development do
+  gem 'faker'
+  gem 'database_cleaner'
+  gem 'factory_girl_rails'
   gem 'capybara', github: 'jnicklas/capybara'
   gem 'rspec-rails', '~> 3.0.0.beta'
   gem 'spring-commands-rspec'
+  gem 'capybara-webkit'
 end
 
 # Use ActiveModel has_secure_password

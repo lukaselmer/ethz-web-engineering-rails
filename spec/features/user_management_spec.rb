@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature 'Visitor signs up' do
   scenario 'with valid email and password' do
-    sign_up_with 'valid@example.com', 'password'
+    sign_up_with Faker::Internet.email, Faker::Internet.password(8)
 
     expect(page).to have_content('Logout')
   end
@@ -18,13 +18,36 @@ feature 'Visitor signs up' do
 
     expect(page).to have_content('Sign up')
   end
+end
 
-  def sign_up_with(email, password, name='Some Name')
-    visit new_user_registration_path
-    fill_in 'Name', with: name
-    fill_in 'Email', with: email
-    fill_in 'Password', with: password
-    fill_in 'Password confirmation', with: password
-    click_button 'Sign up'
+
+feature 'Visitor signs in', js: true do
+  scenario 'with valid email and password' do
+    sign_in
+
+    expect(page).to have_content('Signed in successfully')
+    expect(page).to have_content('Logout')
+  end
+
+  scenario 'with invalid password' do
+    user = create :user
+    visit new_user_session_path
+
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: 'wrongpassword'
+    click_button 'Sign in'
+
+    expect(page).to have_content('Login')
+  end
+
+  scenario 'with invalid password' do
+    user = create :user
+    visit new_user_session_path
+
+    fill_in 'Email', with: 'wrong@example.com'
+    fill_in 'Password', with: user.password
+    click_button 'Sign in'
+
+    expect(page).to have_content('Login')
   end
 end

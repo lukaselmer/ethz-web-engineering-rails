@@ -6,3 +6,4 @@
 #
 one:
   email: admin@localhost.dev
+  name: Some Name
