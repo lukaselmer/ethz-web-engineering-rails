@@ -1,6 +1,7 @@
 <%= simple_form_for(@activity) do |f| %>
   <%= f.error_notification %>
 
+  <%= f.hidden_field :meetup_group %>
   <div class="form-inputs">
     <%= f.input :name %>
     <%= f.input :location %>
@@ -12,7 +13,6 @@
       </div>
     <% end %>
     <%= f.input :description %>
-    <%= f.association :meetup_group %>
     <%= f.input :definite %>
   </div>
 

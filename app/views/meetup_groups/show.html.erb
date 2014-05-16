@@ -42,8 +42,28 @@
 <h2>Activities</h2>
 <%= content_tag_for(:div, @meetup_group.activities) do |activity| %>
   <h3><%= link_to activity.name, activity %></h3>
-  <div>
-    This activity will start at <% activity.start_at %> and will end at <%= activity.ends_at %>.
-  </div>
+  <p>
+    This activity will start at
+    <% activity.start_at %> and will end at <%= activity.ends_at %>.
+  </p>
+  <p>Location: <strong><%= activity.location %></strong></p>
+  <p><%= activity.description %></p>
+  <p>
+    The status of the activity is
+    <% if activity.definite %>
+      <span class="label label-success">definite</span>
+    <% else %>
+      <span class="label label-warning">not definite</span>
+    <% end %>
+  </p>
+
+  <% unless activity.definite %>
+    <p>
+      <%= link_to new_vote_path(vote: {activity_id: activity.id}), class: 'btn btn-default btn-lg' do %>
+        <span class="glyphicon glyphicon-star"></span> Vote for this activity!
+      <% end %>
+    </p>
+  <% end %>
+
   <td><%= link_to 'Delete', activity_path(activity), class: 'btn-sm btn-danger' if can?(:delete, activity) %></td>
 <% end %>
