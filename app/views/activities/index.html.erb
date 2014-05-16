@@ -1,33 +1,7 @@
-<h1>Listing activities</h1>
+<%= page_title 'Activities' %>
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Location</th>
-      <th>Start at</th>
-      <th>Duration</th>
-      <th>Description</th>
-      <th>Meetup group</th>
-      <th>Definite</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<h2>Popular Upcoming Activities</h2>
+<%= render 'list', activities: @activities %>
 
-  <tbody>
-    <% @activities.each do |activity| %>
-      <tr>
-        <td><%= activity.name %></td>
-        <td><%= activity.location %></td>
-        <td><%= activity.start_at %></td>
-        <td><%= activity.duration %></td>
-        <td><%= activity.description %></td>
-        <td><%= activity.meetup_group %></td>
-        <td><%= activity.definite %></td>
-        <td><%= link_to 'Show', activity %></td>
-        <td><%= link_to 'Edit', edit_activity_path(activity) %></td>
-        <td><%= link_to 'Destroy', activity, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<h2>Archived Activities</h2>
+<%= render 'list', activities: @archived_activities %>

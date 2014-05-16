@@ -2,7 +2,8 @@ class ActivitiesController < ApplicationController
   before_action :set_activity, only: [:show, :edit, :update, :destroy]
 
   def index
-    @activities = Activity.all
+    @activities = Activity.upcoming.popular
+    @archived_activities = Activity.archive
   end
 
   def show
