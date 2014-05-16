@@ -24,11 +24,18 @@ gem 'cancancan'
 
 gem 'bootstrap-sass', '~> 3.1.1'
 
+
 group :development do
   gem 'spring'
   gem 'quiet_assets'
   gem 'better_errors'
   gem 'binding_of_caller'
+end
+
+group :test do
+  gem 'capybara', github: 'jnicklas/capybara'
+  gem 'rspec-rails', '~> 3.0.0.beta'
+  gem 'spring-commands-rspec'
 end
 
 # Use ActiveModel has_secure_password
