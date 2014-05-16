@@ -20,3 +20,30 @@
 <%= link_to('Delete',
             @meetup_group, method: :delete, data: {confirm: 'Are you sure?'},
             class: 'btn btn-danger') if can?(:delete, @meetup_group) %>
+
+
+<h2>Members</h2>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>User</th>
+    <th>Member since</th>
+    <th></th>
+  </tr>
+  </thead>
+  <%= content_tag_for(:tr, @meetup_group.memberships) do |membership| %>
+    <td><%= link_to membership.user, membership.user %></td>
+    <td><%= link_to membership.created_at, membership %></td>
+    <td><%= link_to 'Delete', meetup_group_path(membership), class: 'btn-sm btn-danger' if can?(:delete, membership) %></td>
+  <% end %>
+</table>
+
+
+<h2>Activities</h2>
+<%= content_tag_for(:div, @meetup_group.activities) do |activity| %>
+  <h3><%= link_to activity.name, activity %></h3>
+  <div>
+    This activity will start at <% activity.start_at %> and will end at <%= activity.ends_at %>.
+  </div>
+  <td><%= link_to 'Delete', activity_path(activity), class: 'btn-sm btn-danger' if can?(:delete, activity) %></td>
+<% end %>
