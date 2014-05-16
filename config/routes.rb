@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :votes
+  resources :votes, only: [:new, :create, :delete]
 
   resources :memberships, only: [:show, :new, :create, :delete]
 
