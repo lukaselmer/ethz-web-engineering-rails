@@ -3,6 +3,7 @@ require 'test_helper'
 class MeetupGroupsControllerTest < ActionController::TestCase
   setup do
     @meetup_group = meetup_groups(:one)
+    sign_in users(:one)
   end
 
   test "should get index" do

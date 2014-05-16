@@ -3,6 +3,7 @@ require 'test_helper'
 class MembershipsControllerTest < ActionController::TestCase
   setup do
     @membership = memberships(:one)
+    sign_in users(:one)
   end
 
   test "should get new" do

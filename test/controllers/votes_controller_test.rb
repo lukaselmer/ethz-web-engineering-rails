@@ -3,6 +3,7 @@ require 'test_helper'
 class VotesControllerTest < ActionController::TestCase
   setup do
     @vote = votes(:one)
+    sign_in users(:one)
   end
 
   test "should get new" do
@@ -14,6 +15,19 @@ class VotesControllerTest < ActionController::TestCase
     @vote.destroy
     assert_difference('Vote.count') do
       post :create, vote: {activity_id: @vote.activity_id, user_id: @vote.user_id}
+    end
+
+    assert_redirected_to activity_path(assigns(:vote).activity)
+  end
+
+  test "should not create vote unless in meetup group" do
+    @vote.destroy
+    user = @vote.user
+    user.meetup_groups = []
+    user.save
+
+    assert_no_difference('Vote.count') do
+      post :create, vote: {activity_id: @vote.activity_id, user_id: user.id}
     end
 
     assert_redirected_to activity_path(assigns(:vote).activity)

@@ -13,4 +13,8 @@ class User < ActiveRecord::Base
   def to_s
     "#{name} (#{email})"
   end
+
+  def can_vote_for?(activity)
+    meetup_groups.exists?(id: activity.meetup_group.id)
+  end
 end
