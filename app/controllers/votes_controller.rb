@@ -1,5 +1,5 @@
 class VotesController < ApplicationController
-  load_and_authorize_resource only: [:create, :destroy]
+  load_and_authorize_resource
 
   def create
     @vote = Vote.new(vote_params)

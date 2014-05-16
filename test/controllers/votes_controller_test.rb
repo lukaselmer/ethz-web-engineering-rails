@@ -6,11 +6,6 @@ class VotesControllerTest < ActionController::TestCase
     sign_in users(:one)
   end
 
-  test "should get new" do
-    get :new
-    assert_response :success
-  end
-
   test "should create vote" do
     @vote.destroy
     assert_difference('Vote.count') do
@@ -27,10 +22,10 @@ class VotesControllerTest < ActionController::TestCase
     user.save
 
     assert_no_difference('Vote.count') do
-      post :create, vote: {activity_id: @vote.activity_id, user_id: user.id}
+      assert_raises(CanCan::AccessDenied) do
+        post :create, vote: {activity_id: @vote.activity_id, user_id: user.id}
+      end
     end
-
-    assert_redirected_to activity_path(assigns(:vote).activity)
   end
 
   test "should not create double vote" do

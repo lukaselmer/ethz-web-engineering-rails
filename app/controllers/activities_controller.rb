@@ -1,6 +1,4 @@
 class ActivitiesController < ApplicationController
-  # "Bug / new feature required" in cancancan
-  load_and_authorize_resource param_method: :create_params, only: [:new]
   load_and_authorize_resource except: [:new]
 
   def index
@@ -12,6 +10,8 @@ class ActivitiesController < ApplicationController
   end
 
   def new
+    @activity = Activity.new(create_params)
+    authorize!(current_ability, @activity)
   end
 
   def edit

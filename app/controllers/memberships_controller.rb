@@ -1,12 +1,14 @@
 class MembershipsController < ApplicationController
-  # "Bug / new feature required" in cancancan
-  load_and_authorize_resource param_method: :membership_params, only: [:new, :create, :destroy]
-  before_filter :set_available_users, only: [:new, :create]
+  load_and_authorize_resource param_method: :membership_params, except: [:new]
 
   def new
+    @membership = Membership.new(membership_params)
+    authorize!(current_ability, @membership)
+    set_available_users
   end
 
   def create
+    set_available_users
     respond_to do |format|
       if @membership.save
         format.html { redirect_to @membership.meetup_group, notice: 'Membership was successfully created.' }

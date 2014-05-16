@@ -19,11 +19,6 @@ class MembershipsControllerTest < ActionController::TestCase
     assert_redirected_to meetup_group_path(assigns(:membership).meetup_group)
   end
 
-  test "should show membership" do
-    get :show, id: @membership
-    assert_response :success
-  end
-
   test "should destroy membership" do
     assert_difference('Membership.count', -1) do
       delete :destroy, id: @membership

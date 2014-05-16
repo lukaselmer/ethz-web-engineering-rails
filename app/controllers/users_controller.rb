@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  load_and_authorize_resource only: [:show, :index]
+  load_and_authorize_resource
 
   def index
   end
