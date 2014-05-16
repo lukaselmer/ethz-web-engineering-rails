@@ -17,7 +17,7 @@
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, class: 'btn btn-primary' %>
     <%= link_to 'Back', (@activity.new_record? ? @activity.meetup_group : @activity), class: 'btn btn-default' %>
   </div>
 <% end %>

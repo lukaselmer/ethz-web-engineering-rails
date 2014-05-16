@@ -4,6 +4,8 @@
 
 <h2>Members who voted for this activity</h2>
 
-<% content_tag_for(:div, @activity.votes) do |vote| %>
-  <%= link_to vote.user, vote.user %>
+<% @activity.votes.each do |vote| %>
+  <%= link_to vote.user do %>
+    <span class="label label-default"><%= vote.user %></span>
+  <% end %>
 <% end %>
