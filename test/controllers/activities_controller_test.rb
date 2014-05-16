@@ -45,6 +45,6 @@ class ActivitiesControllerTest < ActionController::TestCase
       delete :destroy, id: @activity
     end
 
-    assert_redirected_to activities_path
+    assert_redirected_to meetup_group_path(assigns(:activity).meetup_group)
   end
 end

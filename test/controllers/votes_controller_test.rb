@@ -11,11 +11,20 @@ class VotesControllerTest < ActionController::TestCase
   end
 
   test "should create vote" do
+    @vote.destroy
     assert_difference('Vote.count') do
       post :create, vote: {activity_id: @vote.activity_id, user_id: @vote.user_id}
     end
 
-    assert_redirected_to vote_path(assigns(:vote))
+    assert_redirected_to activity_path(assigns(:vote).activity)
+  end
+
+  test "should not create double vote" do
+    assert_no_difference('Vote.count') do
+      post :create, vote: {activity_id: @vote.activity_id, user_id: @vote.user_id}
+    end
+
+    assert_redirected_to activity_path(assigns(:vote).activity)
   end
 
   test "should destroy vote" do
@@ -23,6 +32,6 @@ class VotesControllerTest < ActionController::TestCase
       delete :destroy, id: @vote
     end
 
-    assert_redirected_to votes_path
+    assert_redirected_to activity_path(assigns(:vote).activity)
   end
 end

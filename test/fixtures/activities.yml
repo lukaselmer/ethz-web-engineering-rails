@@ -3,17 +3,17 @@
 one:
   name: MyString
   location: MyString
-  start_at: 2014-05-15 13:37:13
+  start_at: 2017-05-15 13:37:13
   duration: 30
-  description: MyText
+  description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor vulputate auctor. Aliquam non sapien lacus. Morbi bibendum vestibulum dui eu adipiscing. Curabitur in iaculis nulla. Vestibulum sem augue, sagittis id ullamcorper ultricies, bibendum nec velit. Aenean sit amet vulputate nulla. Maecenas eget placerat leo. Integer vitae iaculis lacus. Curabitur at felis quis diam volutpat gravida. Donec tempus libero eros, et convallis lacus posuere a. Fusce gravida nunc lacus, eu condimentum erat dignissim at.
   meetup_group: one
   definite: false
 
 two:
   name: MyString
   location: MyString
-  start_at: 2014-05-15 13:37:13
+  start_at: 2016-05-15 13:37:13
   duration: 60
-  description: MyText
+  description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor vulputate auctor. Aliquam non sapien lacus. Morbi bibendum vestibulum dui eu adipiscing. Curabitur in iaculis nulla. Vestibulum sem augue, sagittis id ullamcorper ultricies, bibendum nec velit. Aenean sit amet vulputate nulla. Maecenas eget placerat leo. Integer vitae iaculis lacus. Curabitur at felis quis diam volutpat gravida. Donec tempus libero eros, et convallis lacus posuere a. Fusce gravida nunc lacus, eu condimentum erat dignissim at.
   meetup_group: one
   definite: false

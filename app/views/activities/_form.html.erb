@@ -5,7 +5,7 @@
   <div class="form-inputs">
     <%= f.input :name %>
     <%= f.input :location %>
-    <%= f.input :start_at, as: :string, input_html: {class: 'datepicker', value: @activity.start_at.to_s(:datetimepicker)} %>
+    <%= f.input :start_at, as: :string, input_html: {class: 'datepicker', value: (@activity.start_at || Time.now).to_s(:datetimepicker)} %>
     <%= f.input :duration, hint: 'in minutes' do %>
       <div class="input-group">
         <%= f.input_field :duration, class: 'form-control' %>

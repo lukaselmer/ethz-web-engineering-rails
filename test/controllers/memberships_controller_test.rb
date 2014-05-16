@@ -5,12 +5,6 @@ class MembershipsControllerTest < ActionController::TestCase
     @membership = memberships(:one)
   end
 
-  test "should get index" do
-    get :index
-    assert_response :success
-    assert_not_nil assigns(:memberships)
-  end
-
   test "should get new" do
     get :new, membership: {meetup_group_id: @membership.meetup_group_id}
     assert_response :success
@@ -21,7 +15,7 @@ class MembershipsControllerTest < ActionController::TestCase
       post :create, membership: {meetup_group_id: @membership.meetup_group_id, user_id: @membership.user_id}
     end
 
-    assert_redirected_to membership_path(assigns(:membership))
+    assert_redirected_to meetup_group_path(assigns(:membership).meetup_group)
   end
 
   test "should show membership" do
@@ -29,21 +23,11 @@ class MembershipsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get edit" do
-    get :edit, id: @membership
-    assert_response :success
-  end
-
-  test "should update membership" do
-    patch :update, id: @membership, membership: {meetup_group_id: @membership.meetup_group_id, user_id: @membership.user_id}
-    assert_redirected_to membership_path(assigns(:membership))
-  end
-
   test "should destroy membership" do
     assert_difference('Membership.count', -1) do
       delete :destroy, id: @membership
     end
 
-    assert_redirected_to memberships_path
+    assert_redirected_to meetup_group_path(assigns(:membership).meetup_group)
   end
 end
