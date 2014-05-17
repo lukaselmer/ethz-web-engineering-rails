@@ -23,6 +23,7 @@ $ ->
       url: "/search_images/" + search_str
       dataType: "json"
       success: (data) ->
+        $('#selectActivityImage .search-results').empty()
         first = true
         for d in data
           add_image(d, first)
