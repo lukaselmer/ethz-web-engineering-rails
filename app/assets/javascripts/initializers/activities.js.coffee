@@ -2,7 +2,7 @@ $ ->
   add_image = (res, first) ->
     container = $('#selectActivityImage .search-results')
 
-    img_container = $('<div/>')
+    img_container = $('<div></div>')
     img_container.addClass('img-container')
     img_container.addClass('active') if first
 
@@ -15,9 +15,7 @@ $ ->
 
   $('#selectActivityImage .search-form .btn').on 'click', (e) ->
     e.preventDefault();
-
     search_str = $('#selectActivityImage .search-form input').val()
-    _this = $(this)
 
     $('#selectActivityImage .search-results').empty()
 
@@ -66,5 +64,5 @@ $ ->
           image_url: new_image
           image_link: new_link
 
-      success: (data) ->
+      success: () ->
         $('#selectActivityImage').modal('hide')

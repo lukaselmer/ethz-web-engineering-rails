@@ -31,17 +31,17 @@ feature 'The Flickr image sevice' do
   end
 
   scenario 'should generate link from photo hash' do
-    hsh = {'id' => '1234567890', 'owner' => '21345@X53', 'secret' => '412345n12',
-           'server' => '5345', 'farm' => 9, 'title' => 'OJfeöaewfoj, Bla',
-           'ispublic' => 1, 'isfriend' => 0, 'isfamily' => 0}.symbolize_keys
+    hsh = {id: '1234567890', owner: '21345@X53', secret: '412345n12',
+           server: '5345', farm: 9, title: 'OJfeöaewfoj, Bla',
+           ispublic: 1, isfriend: 0, isfamily: 0}
     link = @flickr_service.convert_to_user_url(hsh)
     expect(link).to eq('http://www.flickr.com/photos/21345@X53/1234567890')
   end
 
   scenario 'should generate url from photo hash' do
-    hsh = {'id' => '1234567890', 'owner' => '21345@X53', 'secret' => '412345n12',
-           'server' => '5345', 'farm' => 9, 'title' => 'OJfeöaewfoj, Bla',
-           'ispublic' => 1, 'isfriend' => 0, 'isfamily' => 0}.symbolize_keys
+    hsh = {id: '1234567890', owner: '21345@X53', secret: '412345n12',
+           server: '5345', farm: 9, title: 'OJfeöaewfoj, Bla',
+           ispublic: 1, isfriend: 0, isfamily: 0}
     url = @flickr_service.convert_to_url(hsh)
     expect(url).to eq('http://farm9.staticflickr.com/5345/1234567890_412345n12_c.jpg')
   end
