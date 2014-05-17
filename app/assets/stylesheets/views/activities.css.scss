@@ -1,0 +1,23 @@
+.activity-image {
+  display: block;
+  margin: 15px 15px 3px 0;
+  max-width: 100%;
+}
+
+.activity-image-link {
+  display: block;
+  margin: 0 15px 15px 0;
+  max-width: 100%;
+}
+
+.search-results {
+  .img-container {
+    display: none;
+    &.active {
+      display: block;
+    }
+    img {
+      max-width: 100%;
+    }
+  }
+}

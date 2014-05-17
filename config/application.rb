@@ -21,5 +21,7 @@ module EthzWebEngineeringRails
     config.i18n.default_locale = :en
 
     config.assets.initialize_on_precompile = false
+
+    config.autoload_paths += %W(#{config.root}/app/services)
   end
 end

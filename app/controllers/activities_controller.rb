@@ -51,7 +51,7 @@ class ActivitiesController < ApplicationController
 
   private
   def update_params
-    params.require(:activity).permit(:name, :location, :start_at, :duration, :description, :definite)
+    params.require(:activity).permit(:name, :location, :start_at, :duration, :description, :definite, :image_url, :image_link)
   end
 
   def create_params

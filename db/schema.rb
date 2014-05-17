@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140516084624) do
+ActiveRecord::Schema.define(version: 20140517014528) do
 
   create_table "activities", force: true do |t|
     t.string   "name",            default: "",    null: false
@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(version: 20140516084624) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "votes_count",     default: 0,     null: false
+    t.string   "image_url",       default: "",    null: false
+    t.string   "image_link",      default: "",    null: false
   end
 
   add_index "activities", ["meetup_group_id"], name: "index_activities_on_meetup_group_id"

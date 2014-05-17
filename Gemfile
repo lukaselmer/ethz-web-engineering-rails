@@ -24,6 +24,7 @@ gem 'cancancan'
 
 gem 'bootstrap-sass', '~> 3.1.1'
 
+gem 'flickraw'
 
 group :development do
   gem 'spring'

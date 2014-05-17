@@ -4,12 +4,18 @@ Rails.application.routes.draw do
 
   resources :memberships, except: [:edit, :update, :index]
 
-  resources :activities
+  resources :activities do
+    collection do
+      get :search_images
+    end
+  end
 
   resources :meetup_groups
 
   devise_for :users
   resources :users, only: [:show, :index]
+
+  get 'search_images/:search_term' => 'welcome#search_images'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
