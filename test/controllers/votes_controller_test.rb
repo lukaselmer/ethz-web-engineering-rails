@@ -6,7 +6,7 @@ class VotesControllerTest < ActionController::TestCase
     sign_in users(:one)
   end
 
-  test "should create vote" do
+  test 'should create vote' do
     @vote.destroy
     assert_difference('Vote.count') do
       post :create, vote: {activity_id: @vote.activity_id, user_id: @vote.user_id}
@@ -15,7 +15,7 @@ class VotesControllerTest < ActionController::TestCase
     assert_redirected_to activity_path(assigns(:vote).activity)
   end
 
-  test "should not create vote unless in meetup group" do
+  test 'should not create vote unless in meetup group' do
     @vote.destroy
     user = @vote.user
     user.meetup_groups = []
@@ -28,7 +28,7 @@ class VotesControllerTest < ActionController::TestCase
     end
   end
 
-  test "should not create double vote" do
+  test 'should not create double vote' do
     assert_no_difference('Vote.count') do
       post :create, vote: {activity_id: @vote.activity_id, user_id: @vote.user_id}
     end
@@ -36,7 +36,7 @@ class VotesControllerTest < ActionController::TestCase
     assert_redirected_to activity_path(assigns(:vote).activity)
   end
 
-  test "should destroy vote" do
+  test 'should destroy vote' do
     assert_difference('Vote.count', -1) do
       delete :destroy, id: @vote
     end
