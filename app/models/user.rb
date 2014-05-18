@@ -18,4 +18,8 @@ class User < ActiveRecord::Base
   def can_vote_for?(activity)
     meetup_groups.exists?(id: activity.meetup_group.id)
   end
+
+  def has_twitter?
+    twitter_access_token.present? && twitter_access_token_secret.present?
+  end
 end

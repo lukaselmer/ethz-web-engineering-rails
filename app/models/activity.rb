@@ -16,6 +16,8 @@ class Activity < ActiveRecord::Base
   scope :latest, -> { order(start_at: :desc) }
   scope :by_user, -> (user) { where(meetup_group_id: user.meetup_groups.ids) }
 
+  after_update :tweet
+
   def to_s
     "#{name}, #{start_at}"
   end
@@ -35,5 +37,17 @@ class Activity < ActiveRecord::Base
 
   def voted?(user)
     !vote(user).nil?
+  end
+
+  def tweet
+    return unless definite_changed?(from: false, to: true)
+    return meetup_group.owner.has_twitter?
+
+    t = TwitterService.new(meetup_group.owner)
+    t.tweet(definite_changed_tweet_message)
+  end
+
+  def definite_changed_tweet_message
+    "The activity #{name} is now definite!"
   end
 end

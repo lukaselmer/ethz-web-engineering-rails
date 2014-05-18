@@ -52,6 +52,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
+    addressable (2.3.6)
     arel (5.0.1.20140414130214)
     bcrypt (3.1.7)
     better_errors (1.1.0)
@@ -63,6 +64,7 @@ GEM
       sass (~> 3.2)
     bootstrap3-datetimepicker-rails (3.0.0)
       momentjs-rails (~> 2.5.0)
+    buftok (0.2.0)
     builder (3.2.2)
     cancancan (1.8.0)
     capybara-webkit (1.1.0)
@@ -85,6 +87,7 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
+    equalizer (0.0.9)
     erubis (2.7.0)
     execjs (2.0.2)
     factory_girl (4.4.0)
@@ -94,8 +97,14 @@ GEM
       railties (>= 3.0.0)
     faker (1.3.0)
       i18n (~> 0.5)
+    faraday (0.9.0)
+      multipart-post (>= 1.2, < 3)
     flickraw (0.9.8)
+    hashie (2.1.1)
     hike (1.2.3)
+    http (0.6.1)
+      http_parser.rb (~> 0.6.0)
+    http_parser.rb (0.6.0)
     i18n (0.6.9)
     jbuilder (2.0.7)
       activesupport (>= 3.0.0, < 5)
@@ -111,14 +120,28 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    memoizable (0.4.2)
+      thread_safe (~> 0.3, >= 0.3.1)
     mime-types (1.25.1)
     mini_portile (0.6.0)
     minitest (5.3.4)
     momentjs-rails (2.5.1)
       railties (>= 3.1)
     multi_json (1.10.0)
+    multipart-post (2.0.0)
+    naught (1.0.0)
     nokogiri (1.6.2.1)
       mini_portile (= 0.6.0)
+    oauth (0.4.7)
+    omniauth (1.2.1)
+      hashie (>= 1.2, < 3)
+      rack (~> 1.0)
+    omniauth-oauth (1.0.1)
+      oauth
+      omniauth (~> 1.0)
+    omniauth-twitter (1.0.1)
+      multi_json (~> 1.3)
+      omniauth-oauth (~> 1.0)
     orm_adapter (0.5.0)
     pg (0.17.1)
     polyglot (0.3.4)
@@ -180,6 +203,7 @@ GEM
     sdoc (0.4.0)
       json (~> 1.8)
       rdoc (~> 4.0, < 5.0)
+    simple_oauth (0.2.0)
     spring (1.1.3)
     spring-commands-rspec (1.0.2)
       spring (>= 0.9.1)
@@ -201,6 +225,17 @@ GEM
       polyglot (>= 0.3.1)
     turbolinks (2.2.2)
       coffee-rails
+    twitter (5.9.0)
+      addressable (~> 2.3)
+      buftok (~> 0.2.0)
+      equalizer (~> 0.0.9)
+      faraday (~> 0.9.0)
+      http (~> 0.6.0)
+      http_parser.rb (~> 0.6.0)
+      json (~> 1.8)
+      memoizable (~> 0.4.0)
+      naught (~> 1.0)
+      simple_oauth (~> 0.2.0)
     tzinfo (1.1.0)
       thread_safe (~> 0.1)
     uglifier (2.5.0)
@@ -237,6 +272,7 @@ DEPENDENCIES
   jquery-rails
   jquery-turbolinks
   momentjs-rails (~> 2.5.0)
+  omniauth-twitter
   pg
   quiet_assets
   rails (= 4.1.1)
@@ -249,5 +285,6 @@ DEPENDENCIES
   spring-commands-rspec
   sqlite3
   turbolinks
+  twitter
   uglifier (>= 1.3.0)
   unicorn

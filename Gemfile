@@ -25,6 +25,9 @@ gem 'bootstrap-sass', '~> 3.1.1'
 
 gem 'flickraw'
 
+gem 'twitter'
+gem 'omniauth-twitter'
+
 group :development do
   gem 'spring'
   gem 'quiet_assets'
