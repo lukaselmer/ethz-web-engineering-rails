@@ -50,6 +50,8 @@ group :production do
   gem 'unicorn'
 end
 
+gem 'heroku_secrets', github: 'alexpeattie/heroku_secrets'
+
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
