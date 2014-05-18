@@ -1,10 +1,4 @@
 GIT
-  remote: git://github.com/alexpeattie/heroku_secrets.git
-  revision: b0c5f0680c9e57f7749d404426b8841d6ffe0114
-  specs:
-    heroku_secrets (0.0.2)
-
-GIT
   remote: git://github.com/jnicklas/capybara.git
   revision: 2b778ae6dcdaab067edde542b5dd8f05df3ee3ba
   specs:
@@ -14,6 +8,12 @@ GIT
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+
+GIT
+  remote: git://github.com/lukaselmer/heroku_secrets.git
+  revision: b0c5f0680c9e57f7749d404426b8841d6ffe0114
+  specs:
+    heroku_secrets (0.0.2)
 
 GIT
   remote: git://github.com/plataformatec/simple_form.git
