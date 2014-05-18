@@ -3,7 +3,7 @@ class Ability
 
   def initialize(user)
     if user.nil?
-      # not logged in
+      can :read, User
     else
       can :read, User
 
