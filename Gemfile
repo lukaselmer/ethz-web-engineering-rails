@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 ruby '2.1.2'
 
 gem 'rails', '4.1.1'
-gem 'sqlite3'
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
@@ -34,6 +33,8 @@ group :development do
 end
 
 group :test, :development do
+  gem 'sqlite3'
+
   gem 'faker'
   gem 'database_cleaner'
   gem 'factory_girl_rails'
@@ -41,6 +42,10 @@ group :test, :development do
   gem 'rspec-rails', '~> 3.0.0.beta'
   gem 'spring-commands-rspec'
   gem 'capybara-webkit'
+end
+
+group :production do
+  gem 'pg'
 end
 
 # Use ActiveModel has_secure_password
