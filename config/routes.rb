@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get '/auth/twitter/callback', to: 'users#save_twitter_auth'
 
   resources :votes, except: [:edit, :update, :index]
 
@@ -16,6 +17,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :index]
 
   get 'search_images/:search_term' => 'welcome#search_images'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

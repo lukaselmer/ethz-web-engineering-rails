@@ -6,6 +6,7 @@ class Ability
       can :read, User
     else
       can :read, User
+      can :save_twitter_auth, User
 
       can :read, MeetupGroup
       can :manage, MeetupGroup, owner_id: user.id

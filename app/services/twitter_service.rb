@@ -9,6 +9,6 @@ class TwitterService
   end
 
   def tweet(message)
-    twitter_service.update(message)
+    @client.update(message)
   end
 end

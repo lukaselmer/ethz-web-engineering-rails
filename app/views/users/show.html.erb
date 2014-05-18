@@ -5,7 +5,14 @@
     </div>
   </div>
   <div class="col-sm-8 col-sm-pull-4">
-    <%= page_title("Profile of #{@user}") %>
+
+    <%= page_title do %>
+      <%= "Profile of #{@user}" %>
+      <% if @user.has_twitter? %>
+        <span class="label label-info">Connected to Twitter</span>
+      <% end %>
+    <% end %>
+
     <p><%= @user.name %> is a member of meetup since <%= time_ago_in_words @user.created_at %>.
       He manages <%= @user.managing_meetup_groups.count %> meetup groups and has already proposed
       <%= @user.managing_activities.count %> activities.</p>

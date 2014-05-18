@@ -41,7 +41,7 @@ class Activity < ActiveRecord::Base
 
   def tweet
     return unless definite_changed?(from: false, to: true)
-    return meetup_group.owner.has_twitter?
+    return unless meetup_group.owner.has_twitter?
 
     t = TwitterService.new(meetup_group.owner)
     t.tweet(definite_changed_tweet_message)

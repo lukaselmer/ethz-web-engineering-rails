@@ -19,6 +19,10 @@ class User < ActiveRecord::Base
     meetup_groups.exists?(id: activity.meetup_group.id)
   end
 
+  def update_twitter_auth(token, secret)
+    update_attributes!(twitter_access_token: token, twitter_access_token_secret: secret)
+  end
+
   def has_twitter?
     twitter_access_token.present? && twitter_access_token_secret.present?
   end

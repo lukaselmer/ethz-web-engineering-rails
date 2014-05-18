@@ -17,6 +17,15 @@
   <% end %>
   <% if alert %>
     <div class="alert alert-danger"><%= alert %></div>
+
+  <% if signed_in? && !current_user.has_twitter? %>
+    <div class="alert alert-info alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      Want to get more out of Meetup?
+      <%= link_to '/auth/twitter', class: 'alert-link' do %>
+        Connect it to your Twitter account!
+      <% end %>
+    </div>
   <% end %>
 
   <%= yield %>
