@@ -26,6 +26,13 @@ rake test
 rspec
 ```
 
+Run server
+----------
+
+```
+rails s
+```
+
 Deployment
 ----------
 
