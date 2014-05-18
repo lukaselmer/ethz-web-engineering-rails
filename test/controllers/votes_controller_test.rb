@@ -22,10 +22,10 @@ class VotesControllerTest < ActionController::TestCase
     user.save
 
     assert_no_difference('Vote.count') do
-      assert_raises(CanCan::AccessDenied) do
-        post :create, vote: {activity_id: @vote.activity_id, user_id: user.id}
-      end
+      post :create, vote: {activity_id: @vote.activity_id, user_id: user.id}
     end
+
+    assert_equal 'You are not authorized to access this page.', flash[:alert]
   end
 
   test 'should not create double vote' do
