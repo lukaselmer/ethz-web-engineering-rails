@@ -25,7 +25,7 @@ feature 'Show meetups' do
   end
 end
 
-feature 'User creates meetup group', js: true do
+feature 'User creates meetup group' do
   before(:each) do
     sign_in
   end

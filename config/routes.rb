@@ -1,15 +1,11 @@
 Rails.application.routes.draw do
   get '/auth/twitter/callback', to: 'users#save_twitter_auth'
 
-  resources :votes, except: [:edit, :update, :index]
+  resources :votes, only: [:create, :show, :destroy]
 
-  resources :memberships, except: [:edit, :update, :index]
+  resources :memberships, only: [:new, :create, :show, :destroy]
 
-  resources :activities do
-    collection do
-      get :search_images
-    end
-  end
+  resources :activities
 
   resources :meetup_groups
 

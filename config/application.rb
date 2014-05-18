@@ -24,10 +24,16 @@ module EthzWebEngineeringRails
 
     config.autoload_paths += %W(#{config.root}/app/services)
 
-    config.action_controller.default_url_options = {
-        host: ENV['DEFAULT_URL_HOST'] || 'web-rails.dev',
-        port: Rails.env.production? ? nil : 3000,
-        protocol: Rails.env.production? ? 'https' : 'http'
-    }
+    if Rails.env.production?
+      config.action_controller.default_url_options = {
+          host: ENV['DEFAULT_URL_HOST'],
+          protocol: 'https'
+      }
+    elsif Rails.env.development?
+      config.action_controller.default_url_options = {
+          host: 'web-rails.dev',
+          port: 3000,
+      }
+    end
   end
 end

@@ -1,6 +1,10 @@
 class VotesController < ApplicationController
   load_and_authorize_resource
 
+  def show
+    redirect_to root_path
+  end
+
   def create
     @vote = Vote.new(vote_params)
     redirect_to @vote.activity, alert: 'You already voted!' and return if Vote.exists?(vote_params)
