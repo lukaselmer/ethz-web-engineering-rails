@@ -23,5 +23,11 @@ module EthzWebEngineeringRails
     config.assets.initialize_on_precompile = false
 
     config.autoload_paths += %W(#{config.root}/app/services)
+
+    config.action_controller.default_url_options = {
+        host: ENV['DEFAULT_URL_HOST'] || 'web-rails.dev',
+        port: Rails.env.production? ? nil : 3000,
+        protocol: Rails.env.production? ? 'https' : 'http'
+    }
   end
 end
