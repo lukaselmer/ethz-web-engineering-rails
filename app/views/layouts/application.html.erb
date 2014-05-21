@@ -15,11 +15,14 @@
   <% if notice %>
     <div class="alert alert-success alert-dismissable">
       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <%= notice %></div>
+      <%= notice %>
+    </div>
   <% end %>
   <% if alert %>
-    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-    <div class="alert alert-danger alert-dismissable"><%= alert %></div>
+    <div class="alert alert-danger alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= alert %>
+    </div>
   <% end %>
 
   <% if signed_in? && !current_user.has_twitter? %>
