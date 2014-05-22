@@ -3,7 +3,7 @@ class Activity < ActiveRecord::Base
   has_many :votes
 
   validates :name, :location, :start_at, :duration, :description, :meetup_group, presence: true
-  validates :name, length: {maximum: 80}
+  validates :name, length: {maximum: 40}
   validates :description, length: {minimum: 20}
   validates :duration, numericality: {greater_than_or_equal_to: 15}
 
